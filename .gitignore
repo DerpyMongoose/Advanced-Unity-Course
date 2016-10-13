@@ -33,3 +33,4 @@ ehthumbs.db
 Thumbs.db
 DADIU_CP/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset
 DADIU_CP/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData 1.asset
+*.meta
