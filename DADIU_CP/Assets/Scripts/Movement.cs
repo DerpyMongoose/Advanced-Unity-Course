@@ -51,6 +51,7 @@ public class Movement : MonoBehaviour {
 
     void OnCollisionExit()
     {
+        print("not impact");
         Physics.Raycast(transform.position, -Vector3.up, out GameManager.instance.hit, Mathf.Infinity);
 
         if(GameManager.instance.hit.distance > 0.8f)
@@ -59,8 +60,9 @@ public class Movement : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter()
+    void OnCollisionStay()
     {
+        print("Impact");
         GameManager.instance.isGrounded = true;
     }
 
