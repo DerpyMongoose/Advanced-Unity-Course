@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
     public RaycastHit hit;
 
     [Header("Player Controls")]
-    public float playerSpeed = 0; //for movement with physics
+    public float playerSpeed = 70; //for movement with physics
+    public float playerRotation = 0.3f;
     //public float movingUnits = 0.02f; //that is for movement without physics
     public float jumpValue = 0;
     public float timeBtwJumps = 0.8f;

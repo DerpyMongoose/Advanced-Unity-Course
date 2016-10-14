@@ -18,26 +18,28 @@ public class Movement : MonoBehaviour {
 
         if (Input.GetKey("w") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps)
         {
-            GameManager.instance.playerRG.AddRelativeForce(transform.forward * GameManager.instance.playerSpeed);
+            GameManager.instance.playerRG.AddRelativeForce(Vector3.forward * GameManager.instance.playerSpeed);
             GameManager.instance.playerRG.velocity = GameManager.instance.zeroVelocity;
         }
 
         if (Input.GetKey("s") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps)
         {
-            GameManager.instance.playerRG.AddRelativeForce(-transform.forward * GameManager.instance.playerSpeed);
+            GameManager.instance.playerRG.AddRelativeForce(-Vector3.forward * GameManager.instance.playerSpeed);
             GameManager.instance.playerRG.velocity = GameManager.instance.zeroVelocity;
         }
 
         if (Input.GetKey("d") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps)
         {
-            GameManager.instance.playerRG.AddRelativeForce(transform.right * GameManager.instance.playerSpeed);
-            GameManager.instance.playerRG.velocity = GameManager.instance.zeroVelocity;
+            //GameManager.instance.playerRG.AddRelativeForce(transform.right * GameManager.instance.playerSpeed);
+            //GameManager.instance.playerRG.velocity = GameManager.instance.zeroVelocity;
+            transform.Rotate(new Vector3(0, GameManager.instance.playerRotation, 0));
         }
 
         if (Input.GetKey("a") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps)
         {
-            GameManager.instance.playerRG.AddRelativeForce(-transform.right * GameManager.instance.playerSpeed);
-            GameManager.instance.playerRG.velocity = GameManager.instance.zeroVelocity;
+            //GameManager.instance.playerRG.AddRelativeForce(-transform.right * GameManager.instance.playerSpeed);
+            //GameManager.instance.playerRG.velocity = GameManager.instance.zeroVelocity;
+            transform.Rotate(new Vector3(0, -GameManager.instance.playerRotation, 0));
         }
 
         if (Input.GetKey("space") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps)
@@ -51,7 +53,6 @@ public class Movement : MonoBehaviour {
 
     void OnCollisionExit()
     {
-        print("not impact");
         Physics.Raycast(transform.position, -Vector3.up, out GameManager.instance.hit, Mathf.Infinity);
 
         if(GameManager.instance.hit.distance > 0.8f)
@@ -62,7 +63,6 @@ public class Movement : MonoBehaviour {
 
     void OnCollisionStay()
     {
-        print("Impact");
         GameManager.instance.isGrounded = true;
     }
 
