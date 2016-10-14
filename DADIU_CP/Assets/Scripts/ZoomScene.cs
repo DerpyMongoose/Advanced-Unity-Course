@@ -16,7 +16,7 @@ public class ZoomScene : MonoBehaviour
         isActive = true;
         cam = GameObject.FindGameObjectWithTag("MainCamera");
         cControl = cam.GetComponent<CameraController>();
-        if(cControl = null)
+        if(cControl == null)
         {
             cam.AddComponent<CameraController>();
         }
@@ -26,7 +26,6 @@ public class ZoomScene : MonoBehaviour
     {
         if (GameManager.instance.isCutscene == true)
         {
-            Debug.Log("isCutscene");
             cControl.Cutscene(target);
             GameManager.instance.isCutscene = false;
         }
@@ -36,7 +35,6 @@ public class ZoomScene : MonoBehaviour
     {
         if (isActive == true)
         {
-            Debug.Log("Trigger");
             GameManager.instance.isCutscene = true;
             isActive = false;
         }

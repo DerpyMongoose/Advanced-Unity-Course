@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public RaycastHit hit;
 
+    [Header("Player Controls")]
     public float playerSpeed = 0; //for movement with physics
     //public float movingUnits = 0.02f; //that is for movement without physics
     public float jumpValue = 0;
