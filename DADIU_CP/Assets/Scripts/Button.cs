@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Button : MonoBehaviour {
-
-    private bool pushed = false;
+    [HideInInspector]
+    public bool pushed = false;
 
     void OnTriggerEnter()
     {
