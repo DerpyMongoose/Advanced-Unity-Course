@@ -3,24 +3,28 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
-    private bool active;
-    private GameObject player;
+    public static CameraController instance;
+
+    [HideInInspector]
+    public bool active;
+    [HideInInspector]
+    public GameObject player;
     private Vector3 position;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         transform.position = player.transform.position + new Vector3(GameManager.instance.camX, GameManager.instance.camY, GameManager.instance.camZ);
         transform.parent = player.transform;
+        active = true;
+        //print(active);
     }
 
-    public void Update()
-    {
-        if (active == true)
-        {
-            transform.LookAt(player.transform.position);
-        }
-    }
 
     public void Cutscene(GameObject lookHere, Vector3 direction, float cutsceneDist, float cutsceneLength)
     {
@@ -37,6 +41,7 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(cutsceneLength);
         transform.position = position;
         transform.parent = player.transform;
+        transform.LookAt(player.transform.position);
         active = true;
     }
 }
