@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Button : MonoBehaviour {
+
     [HideInInspector]
     public bool pushed = false;
 
