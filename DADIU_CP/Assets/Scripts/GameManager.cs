@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public bool isGrounded = true;
     [HideInInspector]
     public RaycastHit hit;
+    [HideInInspector]
+    public int currCollectible = 0;
 
     [Header("Player Controls")]
     public float playerSpeed = 70; //for movement with physics
@@ -29,8 +31,9 @@ public class GameManager : MonoBehaviour
     public float camX = 0;
     public float camY = 7.5f;
     public float camZ = -10f;
-    public float cutsceneDistance = 3;
-    public float cutsceneTime = 5;
+
+    [Header("Game Managing")]
+    public GameObject scoreManager;
 
     void Awake()
     {
@@ -38,5 +41,10 @@ public class GameManager : MonoBehaviour
 
             //if not, set instance to this
             instance = this;
+    }
+
+    public void YouWin()
+    {
+        print("You Win");
     }
 }
