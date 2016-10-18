@@ -26,19 +26,19 @@ public class CameraController : MonoBehaviour
     }
 
 
-    public void Cutscene(GameObject lookHere)
+    public void Cutscene(GameObject lookHere, Vector3 direction, float cutsceneDist, float cutsceneLength)
     {
         active = false;
         position = transform.position;
         transform.parent = null;
-        transform.position = lookHere.transform.position + (transform.forward * GameManager.instance.cutsceneDistance) + new Vector3(0f, lookHere.transform.position.y * 3f, 0f);
+        transform.position = lookHere.transform.position + (direction * cutsceneDist) + new Vector3(0f, lookHere.transform.position.y * 3f, 0f);
         transform.LookAt(lookHere.transform);
-        StartCoroutine("cutTimer");
+        StartCoroutine(cutTimer(cutsceneLength));
     }
 
-    IEnumerator cutTimer()
+    IEnumerator cutTimer(float cutsceneLength)
     {
-        yield return new WaitForSeconds(GameManager.instance.cutsceneTime);
+        yield return new WaitForSeconds(cutsceneLength);
         transform.position = position;
         transform.parent = player.transform;
         transform.LookAt(player.transform.position);

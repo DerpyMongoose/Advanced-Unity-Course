@@ -33,4 +33,9 @@ ehthumbs.db
 Thumbs.db
 DADIU_CP/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset
 DADIU_CP/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData 1.asset
-*.meta
+DADIU_CP/Assets/Editor.meta
+DADIU_CP/Assets/Editor/CrossPlatformInput.meta
+DADIU_CP/Assets/Editor/CrossPlatformInput/CrossPlatformInputInitialize.cs.meta
+DADIU_CP/Assets/Standard Assets/
+DADIU_CP/ProjectSettings/
+!DADIU_CP/ProjectSettings/TagManager.asset
