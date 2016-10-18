@@ -58,11 +58,12 @@ MonoBehaviour:
   isGrounded: 1
   currCollectible: 0
   playerSpeed: 150
-  playerRotation: 0.8
+  playerRotation: 1
   jumpValue: 250
   timeBtwJumps: 0.8
   isCutscene: 0
   camX: 0
   camY: 7.5
   camZ: -10
-  scoreManager: {fileID: 0}
+  scoreManager: {fileID: 1000010780991120, guid: 2c70c0be6b535fb4fa49281c8823f4ed,
+    type: 2}
