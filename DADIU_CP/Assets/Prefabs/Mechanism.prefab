@@ -204,8 +204,7 @@ MonoBehaviour:
   button: {fileID: 1000010689305762}
   door: {fileID: 1000010341943482}
   doorMovePos: 1
-  isReusable: 0
-  lerpTimeToPosition: 1
+  isReusable: 1
   color: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &114000013775235244
 MonoBehaviour:
@@ -218,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26ef0250b2096934abe8f046146d32b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneTime: 5
+  cutsceneTime: 3
   cutsceneDistance: 3
   target: {fileID: 1000010341943482}
   direction_: 2

@@ -15,14 +15,13 @@ public class Mechanism : MonoBehaviour
     public GameObject door;
     public doorPos doorMovePos;
     public bool isReusable = false;
-    public float lerpTimeToPosition;
+    public Color colorInactive;
+    public Color colorActive;
 
+    private bool setColor = true;
     private bool doorHasLerped = false;
     private bool allowLerp = true;
     private bool isLerping = false;
-    private bool hasCutscene = false;
-
-    private float lerpTime;
 
     private Button button_;
 
@@ -30,7 +29,7 @@ public class Mechanism : MonoBehaviour
     private Vector3 endPos;
     private Vector3 direction;
 
-    public Color color;
+
 
     // Use this for initialization
     void Start()
@@ -54,29 +53,26 @@ public class Mechanism : MonoBehaviour
             break;
         }
 
-        if (button.GetComponent<ZoomScene>() != null)
-        {
-            hasCutscene = true;
-        }
+        startPos = door.transform.position;
+        endPos = door.transform.position + direction * 3;
 
-        button.GetComponent<Renderer>().material.color = color;
-        door.GetComponent<Renderer>().material.color = color;
         button_ = button.GetComponent<Button>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(door.transform.position.x + "," + door.transform.position.y + "," + door.transform.position.z);
+        if (button_.pushed == false && setColor == true)
+        {
+            button.GetComponent<Renderer>().material.color = colorInactive;
+            door.GetComponent<Renderer>().material.color = colorInactive;
+            setColor = false;
+        }
         if (button_.pushed == true)
         {
             if (allowLerp == true)
             {
-                lerpTime = Time.time;
-
-                startPos = door.transform.position;
-                endPos = door.transform.position + direction*3;
-
+                button.GetComponent<Renderer>().material.color = colorActive;
                 isLerping = true;
                 allowLerp = false;
             }
@@ -86,20 +82,20 @@ public class Mechanism : MonoBehaviour
                 {
                     Lerp(endPos);
                 }
-                else Lerp(startPos);
+                else if (doorHasLerped == true && isReusable == true)
+                {
+                    Lerp(startPos);
+                }
             }
         }
     }
 
     void Lerp(Vector3 pos)
     {
-        float timeSS = Time.time - lerpTime;
-        float lerpPercentage = timeSS / lerpTimeToPosition;
-        door.transform.position = Vector3.Lerp(door.transform.position, pos, lerpPercentage);
+        door.transform.position = Vector3.MoveTowards(door.transform.position, pos, Time.deltaTime);
 
-        if (lerpPercentage >= 1.0f)
+        if (door.transform.position == pos)
         {
-            Debug.Log("Done Lerping");
             isLerping = false;
             allowLerp = true;    
             if (doorHasLerped == true)
@@ -108,6 +104,7 @@ public class Mechanism : MonoBehaviour
             }
             else doorHasLerped = true;
             button_.pushed = false;
+            setColor = true;
         }
         else isLerping = true;
     }

@@ -16,7 +16,6 @@ public class ScoreManager : MonoBehaviour {
 	}
     void Update()
     {
-        Debug.Log(GameManager.instance.currCollectible);
         if (GameManager.instance.currCollectible == collectibles.Length)
         {
             GameManager.instance.YouWin();

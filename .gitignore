@@ -38,5 +38,4 @@ DADIU_CP/Assets/Editor/CrossPlatformInput.meta
 DADIU_CP/Assets/Editor/CrossPlatformInput/CrossPlatformInputInitialize.cs.meta
 DADIU_CP/Assets/Standard Assets/
 DADIU_CP/ProjectSettings/
-DADIU_CP/ProjectSettings/TagManager.asset
-DADIU_CP/ProjectSettings/NavMeshAreas.asset
+!DADIU_CP/ProjectSettings/TagManager.asset
