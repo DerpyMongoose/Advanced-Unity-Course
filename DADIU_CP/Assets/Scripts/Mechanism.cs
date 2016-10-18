@@ -15,14 +15,11 @@ public class Mechanism : MonoBehaviour
     public GameObject door;
     public doorPos doorMovePos;
     public bool isReusable = false;
-    public float lerpTimeToPosition;
 
     private bool doorHasLerped = false;
     private bool allowLerp = true;
     private bool isLerping = false;
     private bool hasCutscene = false;
-
-    private float lerpTime;
 
     private Button button_;
 
@@ -59,6 +56,9 @@ public class Mechanism : MonoBehaviour
             hasCutscene = true;
         }
 
+        startPos = door.transform.position;
+        endPos = door.transform.position + direction * 3;
+
         button.GetComponent<Renderer>().material.color = color;
         door.GetComponent<Renderer>().material.color = color;
         button_ = button.GetComponent<Button>();
@@ -67,16 +67,10 @@ public class Mechanism : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(door.transform.position.x + "," + door.transform.position.y + "," + door.transform.position.z);
         if (button_.pushed == true)
         {
             if (allowLerp == true)
             {
-                lerpTime = Time.time;
-
-                startPos = door.transform.position;
-                endPos = door.transform.position + direction*3;
-
                 isLerping = true;
                 allowLerp = false;
             }
@@ -86,18 +80,19 @@ public class Mechanism : MonoBehaviour
                 {
                     Lerp(endPos);
                 }
-                else Lerp(startPos);
+                else if (doorHasLerped == true && isReusable == true)
+                {
+                    Lerp(startPos);
+                }
             }
         }
     }
 
     void Lerp(Vector3 pos)
     {
-        float timeSS = Time.time - lerpTime;
-        float lerpPercentage = timeSS / lerpTimeToPosition;
-        door.transform.position = Vector3.Lerp(door.transform.position, pos, lerpPercentage);
+        door.transform.position = Vector3.MoveTowards(door.transform.position, pos, Time.deltaTime);
 
-        if (lerpPercentage >= 1.0f)
+        if (door.transform.position == pos)
         {
             Debug.Log("Done Lerping");
             isLerping = false;

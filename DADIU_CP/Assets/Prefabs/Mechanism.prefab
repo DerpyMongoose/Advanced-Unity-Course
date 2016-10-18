@@ -204,8 +204,7 @@ MonoBehaviour:
   button: {fileID: 1000010689305762}
   door: {fileID: 1000010341943482}
   doorMovePos: 1
-  isReusable: 0
-  lerpTimeToPosition: 1
+  isReusable: 1
   color: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &114000013775235244
 MonoBehaviour:
