@@ -33,6 +33,7 @@ public class PlatformV2 : MonoBehaviour {
                     if (destPoint == 0)
                     {
                         moveBack = false;
+                        agent.autoBraking = true;
                         destPoint = 0;
                     }
                 }
@@ -48,6 +49,7 @@ public class PlatformV2 : MonoBehaviour {
                         if (destPoint == 0)
                         {
                             moveBack = false;
+                            agent.autoBraking = true;
                             destPoint = 0;
                         }
                     }
@@ -58,6 +60,7 @@ public class PlatformV2 : MonoBehaviour {
                         if (destPoint == -1)
                         {
                             moveBack = false;
+                            agent.autoBraking = true;
                             left = false;
                             destPoint = 0;
                         }
@@ -112,6 +115,7 @@ public class PlatformV2 : MonoBehaviour {
         {
             CameraController.instance.player.transform.parent = transform;
             GotoNextPoint();
+            
         }
 
     }
@@ -135,6 +139,7 @@ public class PlatformV2 : MonoBehaviour {
             agent.Stop();
             agent.ResetPath();
             moveBack = true;
+            agent.autoBraking = false;
 
         }
     }

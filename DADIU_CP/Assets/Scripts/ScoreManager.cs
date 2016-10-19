@@ -3,7 +3,19 @@ using System.Collections;
 
 public class ScoreManager : MonoBehaviour {
 
+    public static ScoreManager instance;
+
     GameObject[] collectibles;
+
+    [HideInInspector]
+    public int amountOfCollectible;
+    [HideInInspector]
+    public int recursionMax;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
 	// Use this for initialization
 	void Start ()
@@ -13,6 +25,9 @@ public class ScoreManager : MonoBehaviour {
         {
             collectibles[i] = gameObject.GetComponentInChildren<GameObject>();
         }
+
+        amountOfCollectible = transform.childCount;
+        recursionMax = amountOfCollectible;
 	}
     void Update()
     {
