@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public RaycastHit hit;
     [HideInInspector]
     public int currCollectible = 0;
+    [HideInInspector]
+    public bool active;
 
     [Header("Player Controls")]
     public float playerSpeed = 70; //for movement with physics
@@ -25,6 +27,8 @@ public class GameManager : MonoBehaviour
     //public float movingUnits = 0.02f; //that is for movement without physics
     public float jumpValue = 0;
     public float timeBtwJumps = 0.8f;
+    public bool introCheckPos = false;
+    public Transform waitPoint;
 
     [HideInInspector]
     public bool isCutscene = false;
