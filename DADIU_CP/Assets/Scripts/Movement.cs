@@ -13,40 +13,53 @@ public class Movement : MonoBehaviour {
     void FixedUpdate() {
 
         GameManager.instance.timer += Time.deltaTime;
+        //print(GameManager.instance.playerRG.velocity.magnitude);
 
         //CHANGED THE ARROW KEYS WITH WASD BECAUSE APPARENTLY THERE IS A HARDWARE LIMITATION WHEN YOU TRY COMBINE UP+LEFT+SPACE!!!!!!!!!!!!!
 
-        if (Input.GetKey("w") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps && CameraController.instance.active)
+        if (Input.GetKey("w") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps && GameManager.instance.active)
         {
             GameManager.instance.playerRG.AddRelativeForce(Vector3.forward * GameManager.instance.playerSpeed);
             GameManager.instance.playerRG.velocity = GameManager.instance.zeroVelocity;
         }
 
-        if (Input.GetKey("s") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps && CameraController.instance.active)
+        if (Input.GetKey("s") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps && GameManager.instance.active)
         {
             GameManager.instance.playerRG.AddRelativeForce(-Vector3.forward * GameManager.instance.playerSpeed);
             GameManager.instance.playerRG.velocity = GameManager.instance.zeroVelocity;
         }
 
-        if (Input.GetKey("d") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps && CameraController.instance.active)
+        if (Input.GetKey("d") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps && GameManager.instance.active)
         {
             //GameManager.instance.playerRG.AddRelativeForce(transform.right * GameManager.instance.playerSpeed);
             //GameManager.instance.playerRG.velocity = GameManager.instance.zeroVelocity;
             transform.Rotate(new Vector3(0, GameManager.instance.playerRotation, 0));
         }
 
-        if (Input.GetKey("a") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps && CameraController.instance.active)
+        if (Input.GetKey("a") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps && GameManager.instance.active)
         {
             //GameManager.instance.playerRG.AddRelativeForce(-transform.right * GameManager.instance.playerSpeed);
             //GameManager.instance.playerRG.velocity = GameManager.instance.zeroVelocity;
             transform.Rotate(new Vector3(0, -GameManager.instance.playerRotation, 0));
         }
 
-        if (Input.GetKey("space") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps && CameraController.instance.active)
+        if (Input.GetKey("space") && GameManager.instance.isGrounded && GameManager.instance.timer > GameManager.instance.timeBtwJumps && GameManager.instance.active)
         {
             GameManager.instance.playerRG.AddRelativeForce(transform.up * GameManager.instance.jumpValue);
             GameManager.instance.playerRG.velocity = GameManager.instance.zeroVelocity;
             GameManager.instance.timer = 0;
+        }
+
+        if (GameManager.instance.playerRG.velocity.magnitude > 20)
+        {
+            if(!GameManager.instance.introCheckPos)
+            {
+                transform.position = Vector3.zero;
+            }
+            else
+            {
+                transform.position = GameManager.instance.waitPoint.position;
+            }
         }
 
     }
@@ -59,6 +72,7 @@ public class Movement : MonoBehaviour {
         {
             GameManager.instance.isGrounded = false;
         }
+
     }
 
     void OnCollisionStay()
