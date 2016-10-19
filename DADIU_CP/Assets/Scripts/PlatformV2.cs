@@ -4,7 +4,7 @@ using System.Collections;
 public class PlatformV2 : MonoBehaviour {
 
     public GameObject patrol;
-    public Transform[] points;
+    private Transform[] points;
     public bool autoMove;
     private bool moveBack, left;
     private int destPoint = 0;
