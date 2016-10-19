@@ -10,6 +10,8 @@ public class Mechanism : MonoBehaviour
         down,
         left,
         right,
+        forward,
+        backward,
     }
     public GameObject button;
     public GameObject door;
@@ -37,20 +39,26 @@ public class Mechanism : MonoBehaviour
         switch (doorMovePos)
         {
             case doorPos.up:
-            direction = Vector3.up;
-            break;
+                direction = Vector3.up;
+                break;
             case doorPos.down:
-            direction = Vector3.down;
-            break;
+                direction = Vector3.down;
+                break;
             case doorPos.left:
-            direction = Vector3.left;
-            break;
+                direction = Vector3.left;
+                break;
             case doorPos.right:
-            direction = Vector3.right;
-            break;
+                direction = Vector3.right;
+                break;
+            case doorPos.forward:
+                direction = Vector3.forward;
+                break;
+            case doorPos.backward:
+                direction = Vector3.back;
+                break;
             default:
-            direction = Vector3.up;
-            break;
+                direction = Vector3.up;
+                break;
         }
 
         startPos = door.transform.position;
@@ -59,7 +67,6 @@ public class Mechanism : MonoBehaviour
         button_ = button.GetComponent<Button>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (button_.pushed == false && setColor == true)
@@ -97,7 +104,7 @@ public class Mechanism : MonoBehaviour
         if (door.transform.position == pos)
         {
             isLerping = false;
-            allowLerp = true;    
+            allowLerp = true;
             if (doorHasLerped == true)
             {
                 doorHasLerped = false;
