@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     public float timeBtwJumps = 0.8f;
 
     [HideInInspector]
-    public bool isCutscene = false;
     [Header("Camera Controls")]
     public float camX = 0;
     public float camY = 7.5f;

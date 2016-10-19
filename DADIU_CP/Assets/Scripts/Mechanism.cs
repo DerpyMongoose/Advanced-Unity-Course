@@ -70,7 +70,7 @@ public class Mechanism : MonoBehaviour
 
     void Update()
     {
-        if (button_.pushed == false && setColor == true)
+        if (button_.pushed == false && setColor == true && isReusable == false)
         {
             button.GetComponent<Renderer>().material.color = colorInactive;
             door.GetComponent<Renderer>().material.color = colorInactive;
