@@ -19,6 +19,7 @@ public class Mechanism : MonoBehaviour
     public bool isReusable = false;
     public Color colorInactive;
     public Color colorActive;
+    public float distance;
 
     private bool setColor = true;
     private bool doorHasLerped = false;
@@ -62,7 +63,7 @@ public class Mechanism : MonoBehaviour
         }
 
         startPos = door.transform.position;
-        endPos = door.transform.position + direction * 3;
+        endPos = door.transform.position + direction * distance;
 
         button_ = button.GetComponent<Button>();
     }
