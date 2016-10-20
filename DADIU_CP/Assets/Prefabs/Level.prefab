@@ -2535,6 +2535,7 @@ GameObject:
   - 136: {fileID: 136000013474720458}
   - 23: {fileID: 23000012942190120}
   - 114: {fileID: 114000010905345350}
+  - 114: {fileID: 114000011753716590}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -9024,7 +9025,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3019df03d372b9a499e0a3eb309fe889, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -11866,7 +11867,7 @@ MonoBehaviour:
   cutsceneTime: 3
   cutsceneDistance: 3
   target: {fileID: 1000010928821944}
-  direction_: 3
+  direction_: 1
 --- !u!114 &114000010186109854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12081,8 +12082,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutsceneTime: 3
-  cutsceneDistance: 3
+  cutsceneDistance: 6
   target: {fileID: 1000012189738590}
+  direction_: 3
+--- !u!114 &114000011753716590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013499753968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ef0250b2096934abe8f046146d32b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutsceneTime: 3
+  cutsceneDistance: 5
+  target: {fileID: 1000011749407762}
   direction_: 3
 --- !u!114 &114000012515888614
 MonoBehaviour:
