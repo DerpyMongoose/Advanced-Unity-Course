@@ -62,6 +62,9 @@ public class Mechanism : MonoBehaviour
                 break;
         }
 
+        button.GetComponent<Renderer>().material.color = colorInactive;
+        door.GetComponent<Renderer>().material.color = colorInactive;
+
         startPos = door.transform.position;
         endPos = door.transform.position + direction * distance;
 
@@ -70,10 +73,9 @@ public class Mechanism : MonoBehaviour
 
     void Update()
     {
-        if (button_.pushed == false && setColor == true)
+        if (button_.pushed == false && setColor == true && isReusable == true)
         {
             button.GetComponent<Renderer>().material.color = colorInactive;
-            door.GetComponent<Renderer>().material.color = colorInactive;
             setColor = false;
         }
         if (button_.pushed == true)

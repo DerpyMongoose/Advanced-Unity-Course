@@ -14,6 +14,7 @@ public class ZoomScene : MonoBehaviour
     public GameObject target;
     public direction direction_;
 
+    private bool isCutscene = false;
     private Vector3 cutsceneDirection;
     private bool isActive;
     private GameObject cam;
@@ -52,10 +53,10 @@ public class ZoomScene : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.isCutscene == true)
+        if (isCutscene == true)
         {
             cControl.Cutscene(target, cutsceneDirection, cutsceneDistance, cutsceneTime);
-            GameManager.instance.isCutscene = false;
+            isCutscene = false;
         }
     }
 
@@ -63,7 +64,7 @@ public class ZoomScene : MonoBehaviour
     {
         if (isActive == true)
         {
-            GameManager.instance.isCutscene = true;
+            isCutscene = true;
             isActive = false;
         }
     }
