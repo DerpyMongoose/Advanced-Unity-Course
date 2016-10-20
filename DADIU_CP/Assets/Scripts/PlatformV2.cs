@@ -9,9 +9,11 @@ public class PlatformV2 : MonoBehaviour {
     private bool moveBack, left;
     private int destPoint = 0;
     private NavMeshAgent agent;
+    private GameObject player;
 
     void Start () {
         agent = GetComponentInParent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player");
         agent.updateRotation = false;
         points = new Transform[patrol.transform.childCount];
         for (int i = 0; i < points.Length; i++)
@@ -113,7 +115,7 @@ public class PlatformV2 : MonoBehaviour {
     {
         if (col.collider.tag == "Player")
         {
-            CameraController.instance.player.transform.parent = transform;
+            player.transform.parent = transform;
             GotoNextPoint();
             
         }
@@ -135,7 +137,7 @@ public class PlatformV2 : MonoBehaviour {
     {
         if (col.collider.tag == "Player")
         {
-            CameraController.instance.player.transform.parent = null;
+            player.transform.parent = null;
             agent.Stop();
             agent.ResetPath();
             moveBack = true;

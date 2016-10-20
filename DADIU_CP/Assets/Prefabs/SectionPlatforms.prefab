@@ -7036,6 +7036,7 @@ MonoBehaviour:
   isReusable: 0
   colorInactive: {r: 0.6784314, g: 0.64705884, b: 0.5686275, a: 0}
   colorActive: {r: 1, g: 1, b: 0, a: 0}
+  distance: 0
 --- !u!114 &114000011581696452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7125,6 +7126,7 @@ MonoBehaviour:
   isReusable: 0
   colorInactive: {r: 0.6784314, g: 0.64705884, b: 0.5686275, a: 0}
   colorActive: {r: 1, g: 1, b: 0, a: 0}
+  distance: 0
 --- !u!114 &114000014125140782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7155,6 +7157,7 @@ MonoBehaviour:
   isReusable: 1
   colorInactive: {r: 0.6784314, g: 0.64705884, b: 0.5686275, a: 0}
   colorActive: {r: 1, g: 1, b: 0, a: 0}
+  distance: 0
 --- !u!136 &136000012012175268
 CapsuleCollider:
   m_ObjectHideFlags: 1
