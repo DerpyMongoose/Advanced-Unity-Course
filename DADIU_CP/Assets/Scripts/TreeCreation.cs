@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tree : MonoBehaviour {
+public class TreeCreation : MonoBehaviour {
 
-    public static Tree instance;
+    public static TreeCreation instance;
 
     public GameObject startObject;
 
@@ -11,8 +11,6 @@ public class Tree : MonoBehaviour {
     public Vector3[] newVertices;
     [HideInInspector]
     public Vector3[] newNormals;
-    [HideInInspector]
-    public Vector2[] newUV;
     [HideInInspector]
     public int[] newTriangles;
     [HideInInspector]
@@ -23,8 +21,6 @@ public class Tree : MonoBehaviour {
     public int maxVertices = 65534;
     [HideInInspector]
     public int maxTriangles = 65534;
-    //[HideInInspector]
-    //public int recursionMax;
 
     public Vector3 splitAngle1;
     public Vector3 splitAngle2;
@@ -53,72 +49,24 @@ public class Tree : MonoBehaviour {
         }
 
         GetComponent<MeshFilter>().mesh = mesh;
-
-        //splitAngle1 = new Vector3(30, 0, 0);
-        //splitAngle2 = new Vector3(-30, 0, 0);
     }
 
 
-    //void Update()
-    //{
-    //    if (null != startObject)
-    //    {
-    //        Mesh mesh = GetComponent<MeshFilter>().sharedMesh;
-    //        int i;
-
-    //        newVertices = new Vector3[maxVertices];
-    //        newNormals = new Vector3[maxVertices];
-    //        newUV = new Vector2[maxVertices];
-    //        offsetVertices = 0;
-    //        newTriangles = new int[maxTriangles];
-    //        offsetTriangles = 0;
-
-    //        //LSystem(0, transform.worldToLocalMatrix * startObject.transform.localToWorldMatrix);
-
-    //        Vector3[] allVertices = new Vector3[offsetVertices];
-    //        Vector3[] allNormals = new Vector3[offsetVertices];
-    //        Vector2[] allUV = new Vector2[offsetVertices];
-    //        int[] allTriangles = new int[offsetTriangles];
-
-    //        for (i = 0; i < offsetVertices; i++)
-    //        {
-    //            allVertices[i] = newVertices[i];
-    //            allNormals[i] = newNormals[i];
-    //            allUV[i] = newUV[i];
-    //        }
-    //        for (i = 0; i < offsetTriangles; i++)
-    //        {
-    //            allTriangles[i] = newTriangles[i];
-    //        }
-
-    //        //Debug.Log(offsetVertices + " " + offsetTriangles);
-
-    //        //mesh.Clear();
-    //        mesh.vertices = allVertices;
-    //        mesh.normals = allNormals;
-    //        mesh.uv = allUV;
-    //        mesh.triangles = allTriangles;
-    //    }
-    //}
 
     void Update()
     {
         if (null != startObject)
         {
-            //print("I am in");
             Mesh mesh = startObject.GetComponent<MeshFilter>().sharedMesh;
-            //mesh.Clear();
 
             int i;
 
             newVertices = new Vector3[maxVertices];
             newNormals = new Vector3[maxVertices];
-            newUV = new Vector2[maxVertices];
             offsetVertices = 0;
             newTriangles = new int[maxTriangles];
             offsetTriangles = 0;
 
-            //print(ScoreManager.amountOfCollectible);
             LSystem(ScoreManager.instance.amountOfCollectible, startObject.transform.worldToLocalMatrix * startObject.transform.localToWorldMatrix);
 
             Vector3[] allVertices = new Vector3[offsetVertices];
@@ -130,23 +78,17 @@ public class Tree : MonoBehaviour {
             {
                 allVertices[i] = newVertices[i];
                 allNormals[i] = newNormals[i];
-                allUV[i] = newUV[i];
             }
             for (i = 0; i < offsetTriangles; i++)
             {
                 allTriangles[i] = newTriangles[i];
             }
 
-            //Debug.Log(Tree.instance.offsetVertices + " " + Tree.instance.offsetTriangles);
             mesh.Clear();
             mesh.vertices = allVertices;
             mesh.normals = allNormals;
             mesh.uv = allUV;
             mesh.triangles = allTriangles;
-            //for(int k=0; k<allTriangles.Length; k++)
-            //{
-            //    print(allTriangles[k]);
-            //}
         }
     }
 
@@ -184,7 +126,6 @@ public class Tree : MonoBehaviour {
 
     void generateTube(int na, int nc, Matrix4x4 startMatrix, float startV, Matrix4x4 endMatrix, float endV)
     {
-        Mesh mesh = GetComponent<MeshFilter>().sharedMesh;
         int i;
         int j;
         float t;
@@ -204,7 +145,6 @@ public class Tree : MonoBehaviour {
         Quaternion q;
         Vector3 tempYAxis;
         Vector3 scaling;
-        Vector2 uv;
 
         if (offsetVertices + nc * na > maxVertices || offsetTriangles + 6 * nc * (na - 1) > maxTriangles)
         {
@@ -255,7 +195,6 @@ public class Tree : MonoBehaviour {
 
                 newVertices[offsetVertices + j * nc + i] = matrix.MultiplyPoint(new Vector3(Mathf.Cos(phi), 0, -Mathf.Sin(phi)));
                 newNormals[offsetVertices + j * nc + i] = matrix.inverse.transpose.MultiplyVector(new Vector3(Mathf.Cos(phi), 0, -Mathf.Sin(phi)));
-                newUV[offsetVertices + j * nc + i] = new Vector2(i / (nc - 1), (1 - t) * startV + t * endV);
             }
         }
 
