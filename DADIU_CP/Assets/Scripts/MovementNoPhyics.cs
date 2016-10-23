@@ -3,9 +3,11 @@ using System.Collections;
 
 public class MovementNoPhyics : MonoBehaviour {
 
-	
-	void Start () {
-        GameManager.instance.distToGround = GetComponent<Collider>().bounds.extents.y; //finds the distance of the center of the player from the ground
+    private float distToGround;
+
+
+    void Start () {
+        distToGround = GetComponent<Collider>().bounds.extents.y; //finds the distance of the center of the player from the ground
     }
 	
 	
@@ -36,7 +38,7 @@ public class MovementNoPhyics : MonoBehaviour {
 
     bool IsGrounded()
     {
-        print(Physics.Raycast(transform.position, -Vector3.up, GameManager.instance.distToGround));
-        return Physics.Raycast(transform.position, -Vector3.up, GameManager.instance.distToGround);
+        print(Physics.Raycast(transform.position, -Vector3.up, distToGround));
+        return Physics.Raycast(transform.position, -Vector3.up, distToGround);
     }
 }

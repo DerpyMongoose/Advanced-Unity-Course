@@ -15,8 +15,7 @@ public class Collectible : MonoBehaviour {
     {
         if(col.gameObject == player)
         {
-            //gameObject.SetActive(false);
-            //Destroy(gameObject);
+            Destroy(gameObject,2);
             ScoreManager.instance.amountOfCollectible--;
             GameManager.instance.currCollectible +=1;
         }
