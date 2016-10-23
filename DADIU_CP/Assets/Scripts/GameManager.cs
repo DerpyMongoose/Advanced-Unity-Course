@@ -6,16 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    [HideInInspector]
-    public Rigidbody playerRG;
-    [HideInInspector]
-    public Vector3 zeroVelocity;
-    [HideInInspector]
-    public float distToGround, timer;
-    [HideInInspector]
-    public bool isGrounded = true;
-    [HideInInspector]
-    public RaycastHit hit;
+
     [HideInInspector]
     public int currCollectible = 0;
     [HideInInspector]
