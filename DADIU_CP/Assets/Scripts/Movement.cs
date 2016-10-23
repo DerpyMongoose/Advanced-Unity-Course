@@ -13,7 +13,6 @@ public class Movement : MonoBehaviour {
     void FixedUpdate() {
 
         GameManager.instance.timer += Time.deltaTime;
-        //print(GameManager.instance.playerRG.velocity.magnitude);
 
         //CHANGED THE ARROW KEYS WITH WASD BECAUSE APPARENTLY THERE IS A HARDWARE LIMITATION WHEN YOU TRY COMBINE UP+LEFT+SPACE!!!!!!!!!!!!!
 

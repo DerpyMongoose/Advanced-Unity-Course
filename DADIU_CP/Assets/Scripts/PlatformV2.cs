@@ -138,6 +138,7 @@ public class PlatformV2 : MonoBehaviour {
         if (col.collider.tag == "Player")
         {
             player.transform.parent = null;
+            //player.transform.rotation.Set(0,0,0,0);
             agent.Stop();
             agent.ResetPath();
             moveBack = true;
