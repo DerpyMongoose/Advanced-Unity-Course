@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour {
 
     private Vector3 zeroVelocity;
 
-    private float distToGround, timer;
+    private float timer;
 
     private bool isGrounded = true;
 
@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour {
 
     void Start() {
         playerRG = GetComponent<Rigidbody>();
-        distToGround = GetComponent<Collider>().bounds.extents.y; //finds the distance of the center of the player from the ground
+        zeroVelocity = Vector3.zero;
     }
 
 

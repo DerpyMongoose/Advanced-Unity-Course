@@ -9,7 +9,7 @@ public class TreeCreation : MonoBehaviour {
 
     private Vector3[] newVertices;
     private Vector3[] newNormals;
-    private int[] newTriangles;
+    public int[] newTriangles;
     private int offsetVertices = 0;
     private int offsetTriangles = 0;
     private int maxVertices = 65534;
@@ -66,7 +66,6 @@ public class TreeCreation : MonoBehaviour {
 
             Vector3[] allVertices = new Vector3[offsetVertices];
             Vector3[] allNormals = new Vector3[offsetVertices];
-            Vector2[] allUV = new Vector2[offsetVertices];
             int[] allTriangles = new int[offsetTriangles];
 
             for (i = 0; i < offsetVertices; i++)
@@ -82,9 +81,10 @@ public class TreeCreation : MonoBehaviour {
             mesh.Clear();
             mesh.vertices = allVertices;
             mesh.normals = allNormals;
-            mesh.uv = allUV;
             mesh.triangles = allTriangles;
         }
+
+        
     }
 
 
@@ -99,7 +99,7 @@ public class TreeCreation : MonoBehaviour {
             return;
         }
 
-            endMatrix = newStartMatrix * Matrix4x4.TRS(new Vector3(0, 3f, 0),
+            endMatrix = newStartMatrix * Matrix4x4.TRS(new Vector3(0, 1.5f, 0),
               Quaternion.Euler(splitAngle1),
               scale1);
 
@@ -110,7 +110,7 @@ public class TreeCreation : MonoBehaviour {
 
 
 
-            endMatrix = newStartMatrix * Matrix4x4.TRS(new Vector3(0, 3f, 0),
+            endMatrix = newStartMatrix * Matrix4x4.TRS(new Vector3(0, 1.5f, 0),
               Quaternion.Euler(splitAngle2),
               scale2);
 
@@ -195,10 +195,10 @@ public class TreeCreation : MonoBehaviour {
             }
         }
 
-        //Position has the latest point in the branch (tube). I need to make this as a plus vertice.
+        //Position has the latest point in the branch (tube). I need to make this as a plus vertice. We are 99.5% sure that we store correct the center point in an additional vertice.
 
-        //Debug.Log(position);
-        newVertices[offsetVertices + j * nc + forTheLast + 1] = position;
+        //Debug.Log(forTheLast);
+        newVertices[offsetVertices + (j-1) * nc + forTheLast + 1] = position;
         //Debug.Log(newVertices[offsetVertices + j * nc + forTheLast + 1]);
 
 
@@ -213,20 +213,25 @@ public class TreeCreation : MonoBehaviour {
                 newTriangles[offsetTriangles + (j * nc + i) * 6 + 3] = offsetVertices + j * nc + i;
                 newTriangles[offsetTriangles + (j * nc + i) * 6 + 4] = offsetVertices + j * nc + (i + 1);
                 newTriangles[offsetTriangles + (j * nc + i) * 6 + 5] = offsetVertices + (j + 1) * nc + (i + 1);
+                // WHERE IT CREATES THE LAST QUAD???
             }
 
             //I believe here I can check if I am in the latest point of the branch
             if(j == na-2)
             {
                 //print("I am in");
-                newTriangles[offsetTriangles + (j * nc + i) * 6 + 6] = offsetVertices + (j + 1) * nc + i;
-                newTriangles[offsetTriangles + (j * nc + i) * 6 + 7] = offsetVertices + (j + 1) * nc + i + 2;
-                newTriangles[offsetTriangles + (j * nc + i) * 6 + 8] = offsetVertices + (j + 1) * nc + (i + 1);
+                for (int k = 0; k < nc; k++)
+                {
+                    newTriangles[offsetTriangles + 6 * nc * (na - 1) + k * 3 + 0] = offsetVertices + (j + 1) * nc + i - k;
+                    newTriangles[offsetTriangles + 6 * nc * (na - 1) + k * 3 + 1] = offsetVertices + (j + 1) * nc + i + 1;
+                    newTriangles[offsetTriangles + 6 * nc * (na - 1) + k * 3 + 2] = offsetVertices + (j + 1) * nc + i - 1 - k;
+                }
             }
 
         }
 
-        offsetVertices = offsetVertices + nc * na;
-        offsetTriangles = offsetTriangles + 6 * nc * (na - 1);
+        //Added +1 to the offsetVertices so we keep all the time the last point as an additional vertice.
+        offsetVertices = offsetVertices + nc * na + 1;
+        offsetTriangles = offsetTriangles + 6 * nc * (na - 1) + 3 * nc;
     }
 }

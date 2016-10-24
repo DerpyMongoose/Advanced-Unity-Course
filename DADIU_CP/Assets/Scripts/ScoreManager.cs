@@ -29,11 +29,18 @@ public class ScoreManager : MonoBehaviour {
         amountOfCollectible = transform.childCount;
         recursionMax = amountOfCollectible;
 	}
+
     void Update()
     {
         if (GameManager.instance.currCollectible == collectibles.Length)
         {
-            GameManager.instance.YouWin();
+            StartCoroutine("Won");
         }
+    }
+
+    IEnumerator Won()
+    {
+        yield return new WaitForSeconds(1.9f);
+        GameManager.instance.YouWin();
     }
 }
