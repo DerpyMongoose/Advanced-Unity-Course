@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int currCollectible = 0;
     [HideInInspector]
-    public bool active;
+    public bool active = false;
 
     [Header("Player Controls")]
     public float playerSpeed = 70; //for movement with physics
@@ -30,12 +30,9 @@ public class GameManager : MonoBehaviour
     public bool introCheckPos = false;
     public Transform waitPoint;
 
-    [HideInInspector]
-    public bool isCutscene = false;
     [Header("Camera Controls")]
-    public float camX = 0;
     public float camY = 7.5f;
-    public float camZ = -10f;
+    public float camZ = 10f;
 
     [Header("Game Managing")]
     public GameObject scoreManager;
