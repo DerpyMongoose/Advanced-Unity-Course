@@ -7,20 +7,15 @@ public class TreeCreation : MonoBehaviour {
 
     public GameObject startObject;
 
-    [HideInInspector]
-    public Vector3[] newVertices;
-    [HideInInspector]
-    public Vector3[] newNormals;
-    [HideInInspector]
-    public int[] newTriangles;
-    [HideInInspector]
-    public int offsetVertices = 0;
-    [HideInInspector]
-    public int offsetTriangles = 0;
-    [HideInInspector]
-    public int maxVertices = 65534;
-    [HideInInspector]
-    public int maxTriangles = 65534;
+    private Vector3[] newVertices;
+    private Vector3[] newNormals;
+    private int[] newTriangles;
+    private int offsetVertices = 0;
+    private int offsetTriangles = 0;
+    private int maxVertices = 65534;
+    private int maxTriangles = 65534;
+
+    private int forTheLast;
 
     public Vector3 splitAngle1;
     public Vector3 splitAngle2;
@@ -104,21 +99,22 @@ public class TreeCreation : MonoBehaviour {
             return;
         }
 
-            endMatrix = newStartMatrix * Matrix4x4.TRS(new Vector3(0, 1.5f, 0),
+            endMatrix = newStartMatrix * Matrix4x4.TRS(new Vector3(0, 3f, 0),
               Quaternion.Euler(splitAngle1),
               scale1);
 
-            generateTube(2, 9, newStartMatrix, (recursion + 0) / ScoreManager.instance.recursionMax, endMatrix, (recursion + 1) / ScoreManager.instance.recursionMax);
+
+        generateTube(2, 9, newStartMatrix, (recursion + 0) / ScoreManager.instance.recursionMax, endMatrix, (recursion + 1) / ScoreManager.instance.recursionMax);
 
             LSystem(recursion + 1, endMatrix);
 
 
 
-            endMatrix = newStartMatrix * Matrix4x4.TRS(new Vector3(0, 1.5f, 0),
+            endMatrix = newStartMatrix * Matrix4x4.TRS(new Vector3(0, 3f, 0),
               Quaternion.Euler(splitAngle2),
               scale2);
 
-            generateTube(2, 9, newStartMatrix, (recursion + 0) / ScoreManager.instance.recursionMax, endMatrix, (recursion + 1) / ScoreManager.instance.recursionMax);
+        generateTube(2, 9, newStartMatrix, (recursion + 0) / ScoreManager.instance.recursionMax, endMatrix, (recursion + 1) / ScoreManager.instance.recursionMax);
 
             LSystem(recursion + 1, endMatrix);
 
@@ -195,8 +191,16 @@ public class TreeCreation : MonoBehaviour {
 
                 newVertices[offsetVertices + j * nc + i] = matrix.MultiplyPoint(new Vector3(Mathf.Cos(phi), 0, -Mathf.Sin(phi)));
                 newNormals[offsetVertices + j * nc + i] = matrix.inverse.transpose.MultiplyVector(new Vector3(Mathf.Cos(phi), 0, -Mathf.Sin(phi)));
+                forTheLast = i;
             }
         }
+
+        //Position has the latest point in the branch (tube). I need to make this as a plus vertice.
+
+        //Debug.Log(position);
+        newVertices[offsetVertices + j * nc + forTheLast + 1] = position;
+        //Debug.Log(newVertices[offsetVertices + j * nc + forTheLast + 1]);
+
 
         // create triangles 	
         for (j = 0; j < na - 1; j++)
@@ -210,6 +214,16 @@ public class TreeCreation : MonoBehaviour {
                 newTriangles[offsetTriangles + (j * nc + i) * 6 + 4] = offsetVertices + j * nc + (i + 1);
                 newTriangles[offsetTriangles + (j * nc + i) * 6 + 5] = offsetVertices + (j + 1) * nc + (i + 1);
             }
+
+            //I believe here I can check if I am in the latest point of the branch
+            if(j == na-2)
+            {
+                //print("I am in");
+                newTriangles[offsetTriangles + (j * nc + i) * 6 + 6] = offsetVertices + (j + 1) * nc + i;
+                newTriangles[offsetTriangles + (j * nc + i) * 6 + 7] = offsetVertices + (j + 1) * nc + i + 2;
+                newTriangles[offsetTriangles + (j * nc + i) * 6 + 8] = offsetVertices + (j + 1) * nc + (i + 1);
+            }
+
         }
 
         offsetVertices = offsetVertices + nc * na;
