@@ -195,12 +195,7 @@ public class TreeCreation : MonoBehaviour {
             }
         }
 
-        //Position has the latest point in the branch (tube). I need to make this as a plus vertice. We are 99.5% sure that we store correct the center point in an additional vertice.
-
-        //Debug.Log(forTheLast);
         newVertices[offsetVertices + (j-1) * nc + forTheLast + 1] = position;
-        //Debug.Log(newVertices[offsetVertices + j * nc + forTheLast + 1]);
-
 
         // create triangles 	
         for (j = 0; j < na - 1; j++)
@@ -213,13 +208,12 @@ public class TreeCreation : MonoBehaviour {
                 newTriangles[offsetTriangles + (j * nc + i) * 6 + 3] = offsetVertices + j * nc + i;
                 newTriangles[offsetTriangles + (j * nc + i) * 6 + 4] = offsetVertices + j * nc + (i + 1);
                 newTriangles[offsetTriangles + (j * nc + i) * 6 + 5] = offsetVertices + (j + 1) * nc + (i + 1);
-                // WHERE IT CREATES THE LAST QUAD???
+                //WHERE IT CREATES THE LAST QUAD???
             }
 
-            //I believe here I can check if I am in the latest point of the branch
+            //Creating the triangles for closing the branch
             if(j == na-2)
             {
-                //print("I am in");
                 for (int k = 0; k < nc; k++)
                 {
                     newTriangles[offsetTriangles + 6 * nc * (na - 1) + k * 3 + 0] = offsetVertices + (j + 1) * nc + i - k;
@@ -230,7 +224,6 @@ public class TreeCreation : MonoBehaviour {
 
         }
 
-        //Added +1 to the offsetVertices so we keep all the time the last point as an additional vertice.
         offsetVertices = offsetVertices + nc * na + 1;
         offsetTriangles = offsetTriangles + 6 * nc * (na - 1) + 3 * nc;
     }
