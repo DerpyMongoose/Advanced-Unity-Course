@@ -360,7 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eda3586bc006ea4ca4e6f0fda70bbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collect: {fileID: 0}
 --- !u!114 &114000012250646062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,7 +371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eda3586bc006ea4ca4e6f0fda70bbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collect: {fileID: 0}
 --- !u!114 &114000012784475470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -387,7 +385,7 @@ MonoBehaviour:
   cutsceneTime: 2
   cutsceneDistance: 3
   target: {fileID: 0}
-  direction_: 0
+  direction_: 1
 --- !u!114 &114000012834360036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -402,7 +400,7 @@ MonoBehaviour:
   cutsceneTime: 2
   cutsceneDistance: 3
   target: {fileID: 0}
-  direction_: 0
+  direction_: 1
 --- !u!114 &114000012863145822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -417,7 +415,7 @@ MonoBehaviour:
   cutsceneTime: 2
   cutsceneDistance: 3
   target: {fileID: 0}
-  direction_: 0
+  direction_: 1
 --- !u!114 &114000012919773842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -432,7 +430,7 @@ MonoBehaviour:
   cutsceneTime: 2
   cutsceneDistance: 3
   target: {fileID: 0}
-  direction_: 0
+  direction_: 1
 --- !u!114 &114000013445512218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -444,7 +442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eda3586bc006ea4ca4e6f0fda70bbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collect: {fileID: 0}
 --- !u!114 &114000014188762044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -456,7 +453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eda3586bc006ea4ca4e6f0fda70bbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collect: {fileID: 0}
 --- !u!136 &136000011007244388
 CapsuleCollider:
   m_ObjectHideFlags: 1
