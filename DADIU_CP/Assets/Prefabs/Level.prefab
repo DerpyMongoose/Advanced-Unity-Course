@@ -3832,7 +3832,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012706856704}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12, y: 2, z: 10.5}
+  m_LocalPosition: {x: -12, y: 2, z: 8.5}
   m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -4848,7 +4848,7 @@ Transform:
   m_GameObject: {fileID: 1000011374360584}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: -32, y: 1.5, z: 54}
-  m_LocalScale: {x: 0.1, y: 2, z: 0.1}
+  m_LocalScale: {x: 0.3, y: 2, z: 0.3}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013220296890}
@@ -5575,7 +5575,7 @@ Transform:
   m_GameObject: {fileID: 1000012429203438}
   m_LocalRotation: {x: 0, y: 0.08715578, z: 0, w: 0.9961947}
   m_LocalPosition: {x: -27, y: 2.5, z: 57.5}
-  m_LocalScale: {x: 0.2, y: 2, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 2, z: 0.3}
   m_LocalEulerAnglesHint: {x: 0, y: 10, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013220296890}
@@ -14255,7 +14255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1000013077886256}
-  door: {fileID: 1000011262449252}
+  door: {fileID: 1000013431905948}
   doorMovePos: 1
   isReusable: 0
   colorInactive: {r: 0.85294116, g: 0.23832181, b: 0.7088235, a: 0}
